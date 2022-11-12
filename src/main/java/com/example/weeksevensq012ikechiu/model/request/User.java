@@ -16,14 +16,7 @@ public class User {
     private String password;
     private String dob;
     private String gender;
-    private List<Post> posts;
-
-    public User(String firstname, String lastname, String contact, String password, String dob, String gender) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.password = password;
-        this.contact = contact;
-        this.dob = dob;
-        this.gender = gender;
-    }
+    private String day;
+    private String month;
+    private String year;
 }

@@ -1,6 +1,5 @@
 package com.example.weeksevensq012ikechiu.model.response;
 
-import com.example.weeksevensq012ikechiu.model.request.Post;
 import lombok.Data;
 
 import java.util.List;
@@ -13,5 +12,5 @@ public class UserRest {
     private String contact;
     private String dob;
     private String gender;
-    private List<Post> posts;
+    private List<PostRest> posts;
 }

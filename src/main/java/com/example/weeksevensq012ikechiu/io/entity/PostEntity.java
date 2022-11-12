@@ -1,27 +1,30 @@
 package com.example.weeksevensq012ikechiu.io.entity;
 
-import lombok.AccessLevel;
+
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.List;
+
 
 @Getter
 @Setter
-@Entity(name = "post")
-public class PostEntity implements Serializable {
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
-    private static final long serialVersionUID = 6114692438820241351L;
-
+@Entity(name = "posts")
+public class PostEntity {
     @Id
-    @GeneratedValue
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "user_id")
+    private String userId;
+    private String message;
+    private String name;
     @ManyToOne
-    @JoinColumn(name = "users_id")
+    @JoinColumn(name = "users_user_id")
     private UserEntity users;
-
-
+    @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL)
+    private List<PostLikeEntity> post_likes;
+    @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL)
+    private List<CommentEntity> comments;
 }
