@@ -200,7 +200,7 @@ public class PostServiceImpl implements PostService {
     }
 
     private UserEntity getUserEntity(String userId) {
-        return userRepository.findUserEntitiesByUserId(userId).orElse(null);
+        return userRepository.findByUserId(userId).orElse(null);
     }
 
     private PostEntity getPostEntity(Long postId) {

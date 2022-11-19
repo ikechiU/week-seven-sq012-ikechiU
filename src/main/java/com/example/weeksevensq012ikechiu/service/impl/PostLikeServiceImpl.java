@@ -39,7 +39,7 @@ public class PostLikeServiceImpl implements PostLikeService {
     @Override
     public ApiResponse<PostLikeRest> updatePostLike(Long postId, String userId) {
 
-        UserEntity userEntity = userRepository.findUserEntitiesByUserId(userId).orElse(null);
+        UserEntity userEntity = userRepository.findByUserId(userId).orElse(null);
         if (userEntity == null)
             return responseManager.error(HttpStatus.BAD_REQUEST, ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
 

@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface PostLikeRepository extends PagingAndSortingRepository<PostLikeEntity, Long> {
-    Optional<PostLikeEntity> findPostLikeEntitiesByPostId(Long postId);
+    Optional<PostLikeEntity> findByPostId(Long postId);
 
     List<PostLikeEntity> findAllByPostIdAndLiked(Long postId, boolean liked);
     PostLikeEntity findAllByPostIdAndUserId(Long postId, String userId);

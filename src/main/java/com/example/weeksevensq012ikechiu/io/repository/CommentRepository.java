@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 public interface CommentRepository extends PagingAndSortingRepository<CommentEntity, Long> {
-    Optional<CommentEntity> findCommentEntitiesByPostId(String userId);
+    Optional<CommentEntity> findByPostId(String userId);
     Page<CommentEntity> findAllByPostId(Long postId, Pageable pageable);
     List<CommentEntity> findAllByPostId(Long postId);
 }

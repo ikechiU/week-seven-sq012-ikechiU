@@ -10,5 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface PostRepository extends PagingAndSortingRepository<PostEntity, Long> {
-    Optional<PostEntity> findPostEntitiesByUserId(String userId);
+    Optional<PostEntity> findByUserId(String userId);
 }

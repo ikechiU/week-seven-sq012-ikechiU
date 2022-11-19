@@ -32,7 +32,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public ApiResponse<CommentRest> comment(CommentDto commentDto, String userId, Long postId) {
 
-        if (userRepository.findUserEntitiesByUserId(userId).isEmpty())
+        if (userRepository.findByUserId(userId).isEmpty())
             return responseManager.error(HttpStatus.BAD_REQUEST, ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
 
         if (!postRepository.existsById(postId))
@@ -57,7 +57,7 @@ public class CommentServiceImpl implements CommentService {
         if (commentEntity == null)
             return responseManager.error(HttpStatus.BAD_REQUEST, ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
 
-        if (userRepository.findUserEntitiesByUserId(userId).isEmpty())
+        if (userRepository.findByUserId(userId).isEmpty())
             return responseManager.error(HttpStatus.BAD_REQUEST, ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
 
         if (!postRepository.existsById(postId))
@@ -99,7 +99,7 @@ public class CommentServiceImpl implements CommentService {
     public ApiResponse<List<CommentRest>> getComments(String userId, Long postId, int cPage, int cLimit) {
         ResponseManager<List<CommentRest>> manager = new ResponseManager<>();
 
-        if (userRepository.findUserEntitiesByUserId(userId).isEmpty())
+        if (userRepository.findByUserId(userId).isEmpty())
             return manager.error(HttpStatus.BAD_REQUEST, ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
 
         if (!postRepository.existsById(postId))
@@ -114,7 +114,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     private boolean isExist(String userId) {
-        return userRepository.findUserEntitiesByUserId(userId).isEmpty();
+        return userRepository.findByUserId(userId).isEmpty();
     }
 
     private boolean isExist(Long postId) {

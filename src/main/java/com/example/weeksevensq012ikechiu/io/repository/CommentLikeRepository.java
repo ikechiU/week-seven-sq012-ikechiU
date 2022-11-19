@@ -10,11 +10,11 @@ import java.util.Optional;
 
 @Repository
 public interface CommentLikeRepository extends PagingAndSortingRepository<CommentLikeEntity, Long> {
-    Optional<CommentLikeEntity> findCommentLikeEntitiesByCommentId(Long commentId);
+    Optional<CommentLikeEntity> findByCommentId(Long commentId);
     List<CommentLikeEntity> findAllByPostIdAndLiked(Long postId, boolean liked);
     List<CommentLikeEntity> findAllByCommentIdAndLiked(Long commentId, boolean liked);
 
     List<CommentLikeEntity> findAllByPostId(Long postId);
 
-    CommentLikeEntity findCommentLikeEntitiesByCommentIdAndPostIdAndUserId(Long commentId, Long postId, String userId);
+    CommentLikeEntity findByCommentIdAndPostIdAndUserId(Long commentId, Long postId, String userId);
 }

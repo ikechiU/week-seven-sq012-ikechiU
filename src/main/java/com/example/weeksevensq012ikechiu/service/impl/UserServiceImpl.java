@@ -37,15 +37,15 @@ public class UserServiceImpl implements UserService {
             return responseManager.error(HttpStatus.BAD_REQUEST, ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
         }
 
-        if (userRepository.findUserEntitiesByContact(user.getContact()).isPresent())
+        if (userRepository.findByContact(user.getContact()).isPresent())
             return responseManager.error(HttpStatus.CONFLICT, ErrorMessages.RECORD_ALREADY_EXIST.getErrorMessage());
 
-        UserEntity userEntity = modelMapper.map(user, UserEntity.class);
+        UserEntity userEntity = new ModelMapper().map(user, UserEntity.class);
         userEntity.setUserId(new Utils().generateUserId(8));
 
         UserEntity newUser = userRepository.save(userEntity);
-        UserDto userDto = modelMapper.map(newUser, UserDto.class);
-        UserRest userRest = modelMapper.map(userDto, UserRest.class);
+        UserDto userDto = new ModelMapper().map(newUser, UserDto.class);
+        UserRest userRest = new ModelMapper().map(userDto, UserRest.class);
         return responseManager.success(HttpStatus.CREATED, userRest);
     }
 
@@ -65,12 +65,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity getUserByContact(String contact) {
-        return userRepository.findUserEntitiesByContact(contact).orElse(null);
+        return userRepository.findByContact(contact).orElse(null);
     }
 
     @Override
     public UserEntity getUserById(String id) {
-        return userRepository.findUserEntitiesByUserId(id).orElse(null);
+        return userRepository.findByUserId(id).orElse(null);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.weeksevensq012ikechiu.model.response;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +15,6 @@ public class ResponseManager<T> {
     public ApiResponse<T> error(HttpStatus status, String errorMessage) {
         return new ApiResponse<>(status.value(), status, errorMessage, false, null);
     }
+
 }
 

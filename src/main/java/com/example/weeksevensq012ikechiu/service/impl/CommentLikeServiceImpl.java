@@ -43,7 +43,7 @@ public class CommentLikeServiceImpl implements CommentLikeService {
     @Override
     public ApiResponse<CommentLikeRest> updateCommentLike(Long commentId, Long postId, String userId) {
 
-        if (userRepository.findUserEntitiesByUserId(userId).orElse(null) == null)
+        if (userRepository.findByUserId(userId).orElse(null) == null)
             return responseManager.error(HttpStatus.BAD_REQUEST, ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
 
         if (postRepository.findById(postId).orElse(null) == null)
@@ -54,7 +54,7 @@ public class CommentLikeServiceImpl implements CommentLikeService {
             return responseManager.error(HttpStatus.BAD_REQUEST, ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
 
         CommentLikeEntity commentLikeEntity = commentLikeRepository
-                .findCommentLikeEntitiesByCommentIdAndPostIdAndUserId(commentId, postId, userId);
+                .findByCommentIdAndPostIdAndUserId(commentId, postId, userId);
         CommentLikeEntity comLike = new CommentLikeEntity();
         comLike.setLiked(true);
 
